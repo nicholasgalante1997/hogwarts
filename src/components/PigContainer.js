@@ -1,30 +1,41 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PigCard from './PigCard'
 
 
 class PigContainer extends React.Component {
-    state = {
-        pigs: []
-    }
+    // constructor(){
+    //     super()
+    //     this.state={
+    //     pigs: []
+    // }
+    // }
+    // state={
+    //     hiddenPigs: []
+    // }
+    // componentDidMount(){
+    //     this.setState({pigs: this.props.pigs})
+    // }
+    
 
-    fetchAllPigs = () => {
-        fetch(`http://localhost:3001/hogs`)
-        .then(resp => resp.json())
-        .then(pigs => {
-            this.setState({pigs: pigs})
-        })
-    }
-
-    componentDidMount(){
-        this.fetchAllPigs()
-    }
+   
 
     renderPigs = () => {
-        return this.state.pigs.map(pig => <PigCard {...pig}/>)
+        // let goodPigs=[]
+        // if(this.state.hiddenPigs.length>1){
+        //     this.state.hiddenPigs.forEach(hp=>{
+        //     this.props.pigs.forEach(pig=>{
+        //         if(hp.name!=pig.name){
+        //             goodPigs=[...goodPigs, pig]
+        //         }
+        //     })
+        // })
+        // return goodPigs.map((pig , index)=> <PigCard {...pig} key={index} hidePig={this.hidePig}/>)
+        // } else
+         return this.props.pigs.map((pig , index)=> <PigCard {...pig} key={index} hidePig={this.props.hidePig}/>)
     }
 
     render() {
-        console.log(this.state.pigs)
+        
         return (
             <div className="ui grid container">
                  {this.renderPigs()}
